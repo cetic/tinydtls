@@ -386,8 +386,8 @@ dtls_set_record_header(uint8 type, dtls_peer_t *peer, uint8 *buf) {
  */ 
 static inline uint8 *
 dtls_set_handshake_header(uint8 type, dtls_peer_t *peer, 
-			  int length, 
-			  int frag_offset, int frag_length, 
+			  uint32_t length,
+			  uint32_t frag_offset, uint32_t frag_length,
 			  uint8 *buf) {
   
   dtls_int_to_uint8(buf, type);
