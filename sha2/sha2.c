@@ -36,6 +36,8 @@
 #include <string.h>	/* memcpy()/memset() or bcopy()/bzero() */
 #ifdef HAVE_ASSERT_H
 #include <assert.h>	/* assert() */
+#else
+#define assert(...)
 #endif
 #include "sha2.h"
 
