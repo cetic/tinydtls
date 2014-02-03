@@ -48,7 +48,7 @@
 # ifndef DEBUG
 #  define DEBUG DEBUG_PRINT
 # endif /* DEBUG */
-#include "net/uip-debug.h"
+#include "uip-debug.h"
 #else
 #define PRINTF(...)
 #endif
