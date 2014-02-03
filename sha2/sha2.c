@@ -147,6 +147,7 @@ typedef u_int64_t sha2_word64;	/* Exactly 8 bytes */
 
 /*** ENDIAN REVERSAL MACROS *******************************************/
 #if BYTE_ORDER == LITTLE_ENDIAN
+/*
 #define REVERSE32(w,x)	{ \
 	sha2_word32 tmp = (w); \
 	tmp = (tmp >> 16) | (tmp << 16); \
@@ -159,6 +160,41 @@ typedef u_int64_t sha2_word64;	/* Exactly 8 bytes */
 	      ((tmp & 0x00ff00ff00ff00ffULL) << 8); \
 	(x) = ((tmp & 0xffff0000ffff0000ULL) >> 16) | \
 	      ((tmp & 0x0000ffff0000ffffULL) << 16); \
+}
+*/
+#define REVERSE32(w,x)  {\
+  sha2_byte* wp = (sha2_byte*)&(w);\
+  sha2_byte* tmp_x = (sha2_byte*)&(x);\
+  sha2_byte tmp_w[4];\
+  tmp_w[0] = wp[0];\
+  tmp_w[1] = wp[1];\
+  tmp_w[2] = wp[2];\
+  tmp_w[3] = wp[3];\
+  tmp_x[0] = tmp_w[3];\
+  tmp_x[1] = tmp_w[2];\
+  tmp_x[2] = tmp_w[1];\
+  tmp_x[3] = tmp_w[0];\
+}
+#define REVERSE64(w,x)  {\
+  sha2_byte* wp = (sha2_byte*)&(w);\
+  sha2_byte* tmp_x = (sha2_byte*)&(x);\
+  sha2_byte tmp_w[8];\
+  tmp_w[0] = wp[0];\
+  tmp_w[1] = wp[1];\
+  tmp_w[2] = wp[2];\
+  tmp_w[3] = wp[3];\
+  tmp_w[4] = wp[4];\
+  tmp_w[5] = wp[5];\
+  tmp_w[6] = wp[6];\
+  tmp_w[7] = wp[7];\
+  tmp_x[0] = tmp_w[7];\
+  tmp_x[1] = tmp_w[6];\
+  tmp_x[2] = tmp_w[5];\
+  tmp_x[3] = tmp_w[4];\
+  tmp_x[4] = tmp_w[3];\
+  tmp_x[5] = tmp_w[2];\
+  tmp_x[6] = tmp_w[1];\
+  tmp_x[7] = tmp_w[0];\
 }
 #endif /* BYTE_ORDER == LITTLE_ENDIAN */
 
