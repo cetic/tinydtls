@@ -167,7 +167,7 @@ mac(rijndael_ctx *ctx,
 
 }
 
-long int
+size_t
 dtls_ccm_encrypt_message(rijndael_ctx *ctx, size_t M, size_t L, 
 			 unsigned char nonce[DTLS_CCM_BLOCKSIZE], 
 			 unsigned char *msg, size_t lm, 
@@ -231,12 +231,11 @@ dtls_ccm_encrypt_message(rijndael_ctx *ctx, size_t M, size_t L,
   return len + M;
 }
 
-long int
+size_t
 dtls_ccm_decrypt_message(rijndael_ctx *ctx, size_t M, size_t L,
 			 unsigned char nonce[DTLS_CCM_BLOCKSIZE], 
 			 unsigned char *msg, size_t lm, 
 			 const unsigned char *aad, size_t la) {
-  
   size_t len;
   unsigned long counter_tmp;
   unsigned long counter = 1; /* \bug does not work correctly on ia32 when
