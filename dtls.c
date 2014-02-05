@@ -38,7 +38,7 @@
 #else /* WITH_CONTIKI */
 # ifndef NDEBUG
 #   define DEBUG DEBUG_PRINT
-#   include "net/uip-debug.h"
+#   include "uip-debug.h"
 #  endif /* NDEBUG */
 #endif /* WITH_CONTIKI */
 

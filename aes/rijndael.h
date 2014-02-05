@@ -63,15 +63,9 @@ int	 rijndael_set_key_enc_only(rijndael_ctx *, const u_char *, int);
 void	 rijndael_decrypt(rijndael_ctx *, const u_char *, u_char *);
 void	 rijndael_encrypt(rijndael_ctx *, const u_char *, u_char *);
 
-<<<<<<< HEAD
 int	rijndaelKeySetupEnc(aes_u32 [], const unsigned char [], int);
 int	rijndaelKeySetupDec(aes_u32 [], const unsigned char [], int);
 void	rijndaelEncrypt(const aes_u32 [], int, const unsigned char [],
-=======
-int	rijndaelKeySetupEnc(aes_u32 [], const aes_u8 [], int);
-int	rijndaelKeySetupDec(aes_u32 [], const aes_u8 [], int);
-void	rijndaelEncrypt(const aes_u32 [], int, const aes_u8 [],
->>>>>>> Update rijndael for wismote
 	    unsigned char []);
 
 #endif /* __RIJNDAEL_H */
