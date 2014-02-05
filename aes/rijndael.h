@@ -28,8 +28,10 @@
 #ifndef __RIJNDAEL_H
 #define __RIJNDAEL_H
 
-#ifdef WITH_CONTIKI
-#include "contiki.h"
+#ifndef WITH_CONTIKI
+#include <stdint.h>
+#else
+#include <contiki.h>
 #endif
 
 #define AES_MAXKEYBITS	(256)
@@ -40,14 +42,9 @@
 /* bergmann: to avoid conflicts with typedefs from certain Contiki platforms,
  * the following type names have been prefixed with "aes_": */
 typedef unsigned char	u_char;
-typedef unsigned char	aes_u8;
-#ifdef WITH_CONTIKI
+typedef uint8_t         aes_u8;
 typedef uint16_t	aes_u16;
 typedef uint32_t	aes_u32;
-#else
-typedef unsigned short  aes_u16;
-typedef unsigned int    aes_u32;
-#endif
 
 /*  The structure for key information */
 typedef struct {
@@ -66,9 +63,15 @@ int	 rijndael_set_key_enc_only(rijndael_ctx *, const u_char *, int);
 void	 rijndael_decrypt(rijndael_ctx *, const u_char *, u_char *);
 void	 rijndael_encrypt(rijndael_ctx *, const u_char *, u_char *);
 
+<<<<<<< HEAD
 int	rijndaelKeySetupEnc(aes_u32 [], const unsigned char [], int);
 int	rijndaelKeySetupDec(aes_u32 [], const unsigned char [], int);
 void	rijndaelEncrypt(const aes_u32 [], int, const unsigned char [],
+=======
+int	rijndaelKeySetupEnc(aes_u32 [], const aes_u8 [], int);
+int	rijndaelKeySetupDec(aes_u32 [], const aes_u8 [], int);
+void	rijndaelEncrypt(const aes_u32 [], int, const aes_u8 [],
+>>>>>>> Update rijndael for wismote
 	    unsigned char []);
 
 #endif /* __RIJNDAEL_H */

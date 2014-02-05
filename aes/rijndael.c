@@ -857,7 +857,7 @@ void
 rijndaelEncrypt(const aes_u32 rk[/*4*(Nr + 1)*/], int Nr, const aes_u8 pt[16],
     aes_u8 ct[16])
 {
-	aes_u32 s0, s1, s2, s3, t0, t1, t2, t3;
+	volatile aes_u32 s0, s1, s2, s3, t0, t1, t2, t3;
 #ifndef FULL_UNROLL
     int r;
 #endif /* ?FULL_UNROLL */
