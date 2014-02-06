@@ -10,6 +10,7 @@
 #define DEBUG DEBUG_NONE
 #define HAVE_STRNLEN 1
 #define HAVE_SNPRINTF 1
+#define HAVE_VPRINTF 1
 
 #define NDEBUG
 
