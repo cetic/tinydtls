@@ -334,7 +334,7 @@ static int isZero(const uint32_t* A){
 }
 
 static void rshift(uint32_t* A){
-	int n, i, nOld=0;
+        uint32_t n, i, nOld=0;
 	for (i = 8; i--;)
 	{
 		n = A[i]&0x1;
