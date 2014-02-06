@@ -92,18 +92,18 @@
   (*(unsigned char*)(Field) & 0xFF)
 
 #define dtls_uint16_to_int(Field) \
-  (((*(unsigned char*)(Field)) << 8) | (*(((unsigned char*)(Field))+1)))
+  ((((uint16_t) *(unsigned char*)(Field)) << 8) + ((uint16_t) *(((unsigned char*)(Field))+1)))
 
 #define dtls_uint24_to_int(Field)		\
-  (((*(((unsigned char*)(Field)))) << 16)	\
-   | ((*(((unsigned char*)(Field))+1)) << 8)	\
-   | ((*(((unsigned char*)(Field))+2))))
+  ((((uint32_t) *(((unsigned char*)(Field)))) << 16)	\
+   | (((uint32_t) *(((unsigned char*)(Field))+1)) << 8)	\
+   | (((uint32_t) *(((unsigned char*)(Field))+2))))
 
 #define dtls_uint32_to_int(Field)			\
-  ((*(unsigned char*)(Field)) << 24)		\
-  | ((*(((unsigned char*)(Field))+1)) << 16)	\
-  | ((*(((unsigned char*)(Field))+2)) << 8)	\
-  | ((*(((unsigned char*)(Field))+3)))
+  (((uint32_t) *(unsigned char*)(Field)) << 24)		\
+  | (((uint32_t) *(((unsigned char*)(Field))+1)) << 16)	\
+  | (((uint32_t) *(((unsigned char*)(Field))+2)) << 8)	\
+  | (((uint32_t) *(((unsigned char*)(Field))+3)))
   
 #define dtls_uint48_to_ulong(Field)			\
   (((uint64_t) *(unsigned char*)(Field)) << 40)		\
