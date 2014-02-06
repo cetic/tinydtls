@@ -53,6 +53,7 @@
 #define PRINTF(...)
 #endif
 
+#ifndef NDEBUG
 static int maxlog = LOG_WARN;	/* default maximum log level */
 
 log_t 
@@ -256,7 +257,6 @@ dsrv_log(log_t level, char *format, ...) {
 }
 #endif /* WITH_CONTIKI */
 
-#ifndef NDEBUG
 /** dumps packets in usual hexdump format */
 void hexdump(const unsigned char *packet, int length) {
   int n = 0;

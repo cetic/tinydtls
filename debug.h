@@ -62,30 +62,21 @@ void dtls_dsrv_log_addr(log_t level, const char *name, const session_t *addr);
 
 #else /* NDEBUG */
 
-static inline log_t dtls_get_log_level()
-{
-  return LOG_EMERG;
-}
+#define dtls_get_log_level()
 
-static inline void dtls_set_log_level(log_t level)
-{}
 
-static inline void dsrv_log(log_t level, char *format, ...)
-{}
+#define dtls_set_log_level(...)
 
-static inline void hexdump(const unsigned char *packet, int length)
-{}
 
-static inline void dump(unsigned char *buf, size_t len)
-{}
+#define dsrv_log(...)
 
-static inline void
-dtls_dsrv_hexdump_log(log_t level, const char *name, const unsigned char *buf, size_t length, int extend)
-{}
+#define hexdump(...)
 
-static inline void
-dtls_dsrv_log_addr(log_t level, const char *name, const struct __session_t *addr)
-{}
+#define dump(...)
+
+#define dtls_dsrv_hexdump_log(...)
+
+#define dtls_dsrv_log_addr(...)
 
 #endif /* NDEBUG */
 
