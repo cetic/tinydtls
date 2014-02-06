@@ -1600,7 +1600,6 @@ dtls_send_server_hello(dtls_context_t *ctx, dtls_peer_t *peer)
   dtls_handshake_parameters_t *handshake = &peer->handshake_params;
   dtls_tick_t now;
 
-  printf("dtls_send_server_hello\n");
   ecdsa = handshake->cipher == TLS_ECDHE_ECDSA_WITH_AES_128_CCM_8;
 
   extension_size = (ecdsa) ? 2 + 5 + 5 + 8 + 6 : 0;
@@ -1854,7 +1853,6 @@ dtls_send_server_key_exchange_psk(dtls_context_t *ctx, dtls_peer_t *peer,
 {
   uint8 buf[DTLS_SKEXECPSK_LENGTH_MAX];
   uint8 *p;
-  printf("dtls_send_server_key_exchange_psk\n");
 
   p = buf;
 
@@ -1926,7 +1924,6 @@ dtls_send_server_hello_done(dtls_context_t *ctx, dtls_peer_t *peer)
    *
    * Start message construction at beginning of buffer. */
 
-  printf("dtls_send_server_hello_done\n");
   return dtls_send_handshake_msg(ctx, peer, DTLS_HT_SERVER_HELLO_DONE,
 				 NULL, 0);
 }
@@ -1936,7 +1933,6 @@ dtls_send_server_hello_msgs(dtls_context_t *ctx, dtls_peer_t *peer)
 {
   int res;
 
-  printf("dtls_send_server_hello_msgs\n");
   res = dtls_send_server_hello(ctx, peer);
 
   if (res < 0) {
@@ -2909,7 +2905,6 @@ handle_handshake(dtls_context_t *ctx, dtls_peer_t *peer, session_t *session,
     return dtls_alert_fatal_create(DTLS_ALERT_DECODE_ERROR);
   }
 
-  printf("HS: %d\n", data[0]);
   if (!peer && data[0] != DTLS_HT_CLIENT_HELLO) {
     warn("If there is no peer only ClientHello is allowed\n");
     return dtls_alert_fatal_create(DTLS_ALERT_HANDSHAKE_FAILURE);
