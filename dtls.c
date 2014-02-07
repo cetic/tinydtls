@@ -1395,6 +1395,14 @@ static void dtls_destory_peer(dtls_context_t *ctx, dtls_peer_t *peer, int unlink
   dtls_free_peer(peer);
 }
 
+void dtls_peer_timeout(void *ptr)
+{
+  dtls_peer_t *peer = (dtls_peer_t *)ptr;
+  info("Connection timeout, removing peer\n");
+  (void)CALL(peer->ctx, event, &peer->session,
+      DTLS_ALERT_LEVEL_FATAL, DTLS_ALERT_CLOSE_NOTIFY);
+  dtls_destory_peer(peer->ctx, peer, 1);
+}
 /**
  * Checks a received Client Hello message for a valid cookie. When the
  * Client Hello contains no cookie, the function fails and a Hello
@@ -3154,7 +3162,7 @@ handle_handshake(dtls_context_t *ctx, dtls_peer_t *peer, session_t *session,
       /* msg contains a Client Hello with a valid cookie, so we can
        * safely create the server state machine and continue with
        * the handshake. */
-      peer = dtls_new_peer(session);
+      peer = dtls_new_peer(ctx, session);
       if (!peer) {
         dsrv_log(LOG_ALERT, "cannot create peer\n");
         return dtls_alert_fatal_create(DTLS_ALERT_INTERNAL_ERROR);
@@ -3395,6 +3403,7 @@ dtls_handle_message(dtls_context_t *ctx,
     dtls_dsrv_log_addr(LOG_DEBUG, "peer addr", session);
   } else {
     debug("dtls_handle_message: FOUND PEER\n");
+    dtls_peer_refresh_timeout(peer);
   }
 
   /* FIXME: check sequence number of record and drop message if the
@@ -3611,7 +3620,7 @@ dtls_connect(dtls_context_t *ctx, const session_t *dst) {
   peer = dtls_get_peer(ctx, dst);
   
   if (!peer)
-    peer = dtls_new_peer(dst);
+    peer = dtls_new_peer(ctx, dst);
 
   if (!peer) {
     dsrv_log(LOG_CRIT, "cannot create new peer\n");

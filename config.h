@@ -14,6 +14,11 @@
 
 #define NDEBUG
 
+#ifdef DTLS_CONF_CONN_TIMEOUT
+#else DTLS_CONN_TIMEOUT DTLS_CONF_CONN_TIMEOUT
+#define DTLS_CONN_TIMEOUT 10
+#endif
+
 #ifndef DTLS_PEER_MAX
 /** The maximum number DTLS peers (i.e. sessions). */
 #  define DTLS_PEER_MAX 1

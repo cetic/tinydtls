@@ -32,6 +32,8 @@
 #ifndef _DTLS_H_
 #define _DTLS_H_
 
+#include "config.h"
+
 #include <stdint.h>
 
 #include "t_list.h"
