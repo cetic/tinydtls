@@ -36,6 +36,17 @@
 #include "uthash.h"
 #endif /* DTLS_PEERS_NOHASH */
 
+#if WITH_CONTIKI
+#include "ctimer.h"
+
+#ifdef DTLS_CONF_CONN_TIMEOUT
+#define DTLS_CONN_TIMEOUT DTLS_CONF_CONN_TIMEOUT
+#else
+#define DTLS_CONN_TIMEOUT 10
+#endif
+
+#endif /* WITH_CONTIKI */
+
 typedef enum { DTLS_CLIENT=0, DTLS_SERVER } dtls_peer_type;
 
 /** 
@@ -47,6 +58,10 @@ typedef struct dtls_peer_t {
 #else /* DTLS_PEERS_NOHASH */
   UT_hash_handle hh;
 #endif /* DTLS_PEERS_NOHASH */
+#if WITH_CONTIKI && DTLS_CONN_TIMEOUT
+  struct ctimer timeout;
+  struct dtls_context_t *ctx;
+#endif /* WITH_CONTIKI */
 
   session_t session;	     /**< peer address and local interface */
 
@@ -119,7 +134,7 @@ void peer_init();
  * @return A pointer to a newly created and initialized peer object
  * or NULL on error.
  */
-dtls_peer_t *dtls_new_peer(const session_t *session);
+dtls_peer_t *dtls_new_peer(struct dtls_context_t *ctx, const session_t *session);
 
 /** Releases the storage allocated to @p peer. */
 void dtls_free_peer(dtls_peer_t *peer);
@@ -136,5 +151,10 @@ static inline dtls_state_t dtls_peer_state(const dtls_peer_t *peer) {
 static inline int dtls_peer_is_connected(const dtls_peer_t *peer) {
   return peer->state == DTLS_STATE_CONNECTED;
 }
+
+/**
+ * Reset the connection timeout of @p peer
+ */
+void dtls_peer_refresh_timeout(dtls_peer_t *peer);
 
 #endif /* _DTLS_PEER_H_ */

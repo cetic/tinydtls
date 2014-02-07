@@ -19,6 +19,8 @@
 #include "peer.h"
 #include "debug.h"
 
+extern void dtls_peer_timeout(void *);
+
 #ifndef WITH_CONTIKI
 void peer_init()
 {
@@ -53,6 +55,9 @@ dtls_malloc_peer() {
 
 void
 dtls_free_peer(dtls_peer_t *peer) {
+#if defined WITH_CONTIKI && DTLS_CONN_TIMEOUT
+  ctimer_stop(&peer->timeout);
+#endif
   dtls_handshake_free(peer->handshake_params);
   dtls_security_free(peer->security_params[0]);
   dtls_security_free(peer->security_params[1]);
@@ -61,12 +66,13 @@ dtls_free_peer(dtls_peer_t *peer) {
 #endif /* WITH_CONTIKI */
 
 dtls_peer_t *
-dtls_new_peer(const session_t *session) {
+dtls_new_peer(struct dtls_context_t *ctx, const session_t *session) {
   dtls_peer_t *peer;
 
   peer = dtls_malloc_peer();
   if (peer) {
     memset(peer, 0, sizeof(dtls_peer_t));
+    peer->ctx = ctx;
     memcpy(&peer->session, session, sizeof(session_t));
     peer->security_params[0] = dtls_security_new();
 
@@ -75,8 +81,17 @@ dtls_new_peer(const session_t *session) {
       return NULL;
     }
 
+#if defined WITH_CONTIKI && DTLS_CONN_TIMEOUT
+    ctimer_set(&peer->timeout, DTLS_CONN_TIMEOUT*CLOCK_SECOND, dtls_peer_timeout, peer);
+#endif
     dtls_dsrv_log_addr(DTLS_LOG_DEBUG, "dtls_new_peer", session);
   }
 
   return peer;
+}
+
+void dtls_peer_refresh_timeout(dtls_peer_t *peer) {
+#if defined WITH_CONTIKI && DTLS_CONN_TIMEOUT
+  ctimer_restart(&peer->timeout);
+#endif
 }
