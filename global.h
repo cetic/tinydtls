@@ -227,7 +227,11 @@ static inline void
 dtls_session_init(session_t *sess) {
   assert(sess);
   memset(sess, 0, sizeof(session_t));
+#ifndef WITH_CONTIKI
   sess->size = sizeof(sess->addr);
+#else
+  sess->size = sizeof(sess->addr) + sizeof(sess->port);
+#endif
 }
 
 static inline int
