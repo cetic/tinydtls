@@ -149,7 +149,7 @@ init_dtls() {
 #if 0  /* TEST */
   memset(&tmp_addr, 0, sizeof(linkaddr_t));
   if(get_eui64_from_eeprom(tmp_addr.u8));
-#if UIP_CONF_IPV6
+#if NETSTACK_CONF_WITH_IPV6
   memcpy(&uip_lladdr.addr, &tmp_addr.u8, 8);
 #endif
 #endif /* TEST */

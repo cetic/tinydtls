@@ -6,9 +6,8 @@ all: dtls-server dtls-client
 CONTIKI=../..
 #CFLAGS += -DPROJECT_CONF_H=\"project-conf.h\"
 
-WITH_UIP6=1
-UIP_CONF_IPV6=1
-UIP_CONF_RPL=0
+CONTIKI_WITH_RPL = 0
+CONTIKI_WITH_IPV6 = 1
 
 ifneq ($(ROLE),client)
 	CFLAGS+= -DHARD_CODED_ADDRESS=\"aaaa::02:232\"
