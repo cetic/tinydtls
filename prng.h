@@ -62,7 +62,11 @@ contiki_prng_impl(unsigned char *buf, size_t len) {
 #endif /* HAVE_PRNG */
 
 #define prng(Buf,Length) contiki_prng_impl((Buf), (Length))
+#ifndef CONTIKI_TARGET_CC2538DK
 #define prng_init(Value) random_init((unsigned short)(Value))
+#else
+#define prng_init(Value)
+#endif
 #endif /* WITH_CONTIKI */
 
 #ifndef prng
