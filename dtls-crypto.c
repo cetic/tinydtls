@@ -33,8 +33,8 @@
 #include "debug.h"
 #include "numeric.h"
 #include "dtls.h"
-#include "crypto.h"
-#include "ccm.h"
+#include "dtls-crypto.h"
+#include "dtls-ccm.h"
 #include "ecc/ecc.h"
 
 #ifndef WITH_CONTIKI
@@ -64,7 +64,7 @@ dtls_cipher_context_free(dtls_cipher_context_t *ctx) {
 }
 #endif /* WITH_CONTIKI */
 
-void crypto_init() {
+void dtls_crypto_init() {
   dtls_hmac_storage_init();
 
 #ifdef WITH_CONTIKI

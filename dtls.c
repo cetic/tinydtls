@@ -144,7 +144,7 @@ void
 dtls_init() {
   dtls_clock_init();
   netq_init();
-  crypto_init();
+  dtls_crypto_init();
   peer_init();
 }
 

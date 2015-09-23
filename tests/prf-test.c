@@ -1,9 +1,9 @@
 #include <stdio.h>
 
+#include "../dtls-crypto.h"
 #include "config.h"
 #include "debug.h"
 #include "global.h"
-#include "crypto.h"
 
 int 
 main() {

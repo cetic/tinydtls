@@ -46,7 +46,7 @@
 #endif /* WITH_CONTIKI */
 
 #include "alert.h"
-#include "crypto.h"
+#include "dtls-crypto.h"
 #include "hmac.h"
 
 #include "global.h"

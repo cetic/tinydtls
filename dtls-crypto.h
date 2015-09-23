@@ -24,20 +24,20 @@
  * SOFTWARE.
  */
 
-#ifndef _CRYPTO_H_
-#define _CRYPTO_H_
+#ifndef _DTLS_CRYPTO_H_
+#define _DTLS_CRYPTO_H_
 
 #include "config.h"
 
 #include <stdlib.h>		/* for rand() and srand() */
 
 #include "aes/rijndael.h"
+#include "dtls-ccm.h"
 
 #include "prng.h"
 #include "global.h"
 #include "numeric.h"
 #include "hmac.h"
-#include "ccm.h"
 
 /* TLS_PSK_WITH_AES_128_CCM_8 */
 #define DTLS_MAC_KEY_LENGTH    0
@@ -177,7 +177,7 @@ typedef struct {
 /* just for consistency */
 #define dtls_kb_digest_size(Param, Role) DTLS_MAC_LENGTH
 
-void crypto_init();
+void dtls_crypto_init();
 
 /** 
  * Expands the secret and key to a block of DTLS_HMAC_MAX 
@@ -357,5 +357,5 @@ dtls_cipher_context_t *dtls_cipher_new(dtls_cipher_t code,
  */
 void dtls_cipher_free(dtls_cipher_context_t *cipher_context);
 
-#endif /* _CRYPTO_H_ */
+#endif /* _DTLS_CRYPTO_H_ */
 

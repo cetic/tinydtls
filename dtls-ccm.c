@@ -25,9 +25,9 @@
 
 #include <string.h>
 
+#include "dtls-ccm.h"
 #include "global.h"
 #include "numeric.h"
-#include "ccm.h"
 
 #define CCM_FLAGS(A,M,L) (((A > 0) << 6) | (((M - 2)/2) << 3) | (L - 1))
 

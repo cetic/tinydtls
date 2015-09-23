@@ -2,10 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "../dtls-crypto.h"
 #include "debug.h"
 #include "numeric.h"
-#include "crypto.h"
-
 #include "cbc_aes128-testdata.c"
 
 void 

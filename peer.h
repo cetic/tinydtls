@@ -32,10 +32,10 @@
 #define _PEER_H_
 
 #include "config.h"
+#include "dtls-crypto.h"
 #include "global.h"
 
 #include "state.h"
-#include "crypto.h"
 
 #ifndef WITH_CONTIKI
 #include "uthash.h"
