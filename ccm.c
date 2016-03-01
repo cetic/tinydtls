@@ -23,7 +23,12 @@
 #include "ccm.h"
 
 #ifdef HAVE_ASSERT_H
-# include <assert.h>
+#include <assert.h> /* assert() */
+#else
+#ifndef assert
+#warning "assertions are disabled"
+#  define assert(x)
+#endif
 #endif
 
 #define CCM_FLAGS(A,M,L) (((A > 0) << 6) | (((M - 2)/2) << 3) | (L - 1))
