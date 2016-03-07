@@ -32,6 +32,7 @@ ecc/testfield
 obj_*
 tinydtls.h
 dtls_config.h
+dtls_config.h.in
 *.apple2enh
 *.atarixl
 *.avr-atmega128rfa1

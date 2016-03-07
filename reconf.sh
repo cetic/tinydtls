@@ -1,5 +1,5 @@
 #/bin/sh
 
-autoconf
+autoreconf
 
 ./configure --with-contiki --without-ecc
