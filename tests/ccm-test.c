@@ -14,7 +14,7 @@
 //#include "debug.h"
 #include "dtls_config.h"
 #include "numeric.h"
-#include "ccm.h"
+#include "dtls_ccm.h"
 
 #include "ccm-testdata.c"
 

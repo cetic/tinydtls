@@ -30,7 +30,7 @@
 #include "session.h"
 
 #include "state.h"
-#include "crypto.h"
+#include "dtls_crypto.h"
 
 #ifndef DTLS_PEERS_NOHASH
 #include "uthash.h"

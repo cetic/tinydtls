@@ -13,6 +13,7 @@ CFLAGS += -DLITTLE_ENDIAN=3412 -DBYTE_ORDER=LITTLE_ENDIAN
 endif
 
 CFLAGS += -DDTLSv12 -DWITH_SHA256 -DSHA2_USE_INTTYPES_H=1
+tinydtls_src = dtls.c dtls_crypto.c hmac.c rijndael.c sha2.c dtls_ccm.c netq.c ecc.c dtls_time.c peer.c session.c
 
 # This activates debugging support
 # CFLAGS += -DNDEBUG

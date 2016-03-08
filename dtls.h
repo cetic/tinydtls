@@ -32,7 +32,7 @@
 #include "uthash.h"
 
 #include "alert.h"
-#include "crypto.h"
+#include "dtls_crypto.h"
 #include "hmac.h"
 
 #include "global.h"

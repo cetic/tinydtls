@@ -4,7 +4,7 @@
 
 #include "debug.h"
 #include "numeric.h"
-#include "crypto.h"
+#include "dtls_crypto.h"
 
 #include "cbc_aes128-testdata.c"
 

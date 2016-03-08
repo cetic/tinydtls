@@ -27,7 +27,7 @@
 #include "state.h"
 #include "numeric.h"
 #include "hmac.h"
-#include "ccm.h"
+#include "dtls_ccm.h"
 
 /* TLS_PSK_WITH_AES_128_CCM_8 */
 #define DTLS_MAC_KEY_LENGTH    0
@@ -344,7 +344,7 @@ void dtls_handshake_free(dtls_handshake_parameters_t *handshake);
 dtls_security_parameters_t *dtls_security_new();
 
 void dtls_security_free(dtls_security_parameters_t *security);
-void crypto_init();
+void dtls_crypto_init();
 
 #endif /* _DTLS_CRYPTO_H_ */
 
