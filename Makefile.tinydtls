@@ -17,5 +17,5 @@ tinydtls_src = dtls.c dtls_crypto.c hmac.c rijndael.c sha2.c dtls_ccm.c netq.c e
 
 # This activates debugging support
 # CFLAGS += -DNDEBUG
-tinydtls_src += debug.c
+tinydtls_src += dtls_debug.c
 

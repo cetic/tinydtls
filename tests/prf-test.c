@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 #include "tinydtls.h"
-#include "debug.h"
+#include "dtls_debug.h"
 #include "global.h"
 #include "dtls_crypto.h"
 
