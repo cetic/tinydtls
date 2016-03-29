@@ -64,7 +64,7 @@ static void dtls_cipher_context_release(void)
 }
 
 #ifndef WITH_CONTIKI
-void dtls_crypto_init()
+void dtls_crypto_init(void)
 {
 }
 
@@ -89,7 +89,7 @@ static void dtls_security_dealloc(dtls_security_parameters_t *security) {
 MEMB(handshake_storage, dtls_handshake_parameters_t, DTLS_HANDSHAKE_MAX);
 MEMB(security_storage, dtls_security_parameters_t, DTLS_SECURITY_MAX);
 
-void dtls_crypto_init() {
+void dtls_crypto_init(void) {
   memb_init(&handshake_storage);
   memb_init(&security_storage);
 }
