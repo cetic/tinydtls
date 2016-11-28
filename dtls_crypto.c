@@ -27,7 +27,7 @@
 #endif
 
 #include "global.h"
-#include "debug.h"
+#include "dtls-debug.h"
 #include "numeric.h"
 #include "dtls.h"
 #include "dtls_crypto.h"

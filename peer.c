@@ -17,7 +17,8 @@
 
 #include "global.h"
 #include "peer.h"
-#include "debug.h"
+
+#include "dtls-debug.h"
 
 extern void dtls_peer_timeout(void *);
 
