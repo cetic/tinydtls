@@ -61,8 +61,8 @@ typedef struct dtls_peer_t {
 #endif /* DTLS_PEERS_NOHASH */
 #if WITH_CONTIKI && DTLS_CONN_TIMEOUT
   struct ctimer timeout;
-  struct dtls_context_t *ctx;
 #endif /* WITH_CONTIKI */
+  struct dtls_context_t *ctx;
 
   session_t session;	     /**< peer address and local interface */
 

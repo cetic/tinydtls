@@ -1558,6 +1558,7 @@ static void dtls_destroy_peer(dtls_context_t *ctx, dtls_peer_t *peer, int unlink
   dtls_free_peer(peer);
 }
 
+#if WITH_CONTIKI && DTLS_CONN_TIMEOUT
 void dtls_peer_timeout(void *ptr)
 {
   dtls_peer_t *peer = (dtls_peer_t *)ptr;
@@ -1566,6 +1567,7 @@ void dtls_peer_timeout(void *ptr)
       DTLS_ALERT_LEVEL_FATAL, DTLS_ALERT_CLOSE_NOTIFY);
   dtls_destroy_peer(peer->ctx, peer, 1);
 }
+#endif
 /**
  * Checks a received Client Hello message for a valid cookie. When the
  * Client Hello contains no cookie, the function fails and a Hello
