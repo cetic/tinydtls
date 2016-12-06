@@ -36,7 +36,7 @@
 #include "uthash.h"
 #endif /* DTLS_PEERS_NOHASH */
 
-#include "dtls-debug.h"
+#include "debug.h"
 #include "numeric.h"
 #include "netq.h"
 #include "dtls.h"

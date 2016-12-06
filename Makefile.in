@@ -34,10 +34,10 @@ package = @PACKAGE_TARNAME@-@PACKAGE_VERSION@
 install := cp
 
 # files and flags
-SOURCES:= dtls.c dtls_crypto.c dtls_ccm.c hmac.c netq.c peer.c dtls_time.c session.c dtls-debug.c
+SOURCES:= dtls.c dtls_crypto.c dtls_ccm.c hmac.c netq.c peer.c dtls_time.c session.c debug.c
 SUB_OBJECTS:=aes/rijndael.o @OPT_OBJS@
 OBJECTS:= $(patsubst %.c, %.o, $(SOURCES)) $(SUB_OBJECTS)
-HEADERS:=dtls.h hmac.h dtls-debug.h dtls_config.h uthash.h numeric.h dtls_crypto.h global.h dtls_ccm.h \
+HEADERS:=dtls.h hmac.h debug.h dtls_config.h uthash.h numeric.h dtls_crypto.h global.h dtls_ccm.h \
  netq.h alert.h utlist.h prng.h peer.h state.h dtls_time.h session.h \
  tinydtls.h
 CFLAGS:=-Wall -pedantic -std=c99 @CFLAGS@

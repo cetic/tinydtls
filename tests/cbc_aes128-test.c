@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../dtls-debug.h"
+#include "debug.h"
 #include "numeric.h"
 #include "dtls_crypto.h"
 

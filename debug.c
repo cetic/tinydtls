@@ -34,7 +34,7 @@
 #endif
 
 #include "global.h"
-#include "dtls-debug.h"
+#include "debug.h"
 
 #ifndef min
 #define min(a,b) ((a) < (b) ? (a) : (b))
