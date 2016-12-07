@@ -47,11 +47,15 @@ typedef unsigned char uint48[6];
     When Peers are sending bigger messages this causes problems. Californium
     with ECDSA needs at least 220 */
 #ifdef WITH_CONTIKI
+#if CONTIKI_TARGET_COOJA
+#define DTLS_MAX_BUF 1400
+#else /* CONTIKI_TARGET_COOJA */
 #ifdef DTLS_ECC
 #define DTLS_MAX_BUF 200
 #else /* DTLS_ECC */
 #define DTLS_MAX_BUF 200
 #endif /* DTLS_ECC */
+#endif /* CONTIKI_TARGET_COOJA */
 #else /* WITH_CONTIKI */
 #define DTLS_MAX_BUF 1400
 #endif /* WITH_CONTIKI */
